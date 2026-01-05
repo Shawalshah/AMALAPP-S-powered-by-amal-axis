@@ -3,56 +3,47 @@ import { useParams, Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { ArrowLeft, Headphones } from 'lucide-react';
-import amalAppDetailImg from '../assets/Detail Page Images/Amal App Detail page.jpg';
-import feelProDetailImg from '../assets/Detail Page Images/FeelPRO Detail Page.jpg';
-import guessChatImg from '../assets/images/Gues Chat.jpg';
-import guessChatDetailImg from '../assets/Detail Page Images/Gues Chat Detail page.jpg';
-import kidsSchoolImg from '../assets/images/Kids School.jpg';
-import kidsSchoolDetailImg from '../assets/Detail Page Images/Kids School Detail page.jpg';
-import kidsDrawingImg from '../assets/images/Kids Drawing.jpg';
-import kidsDrawingDetailImg from '../assets/Detail Page Images/Kids Drawing Detail pgae.jpg';
-import review2025DetailImg from '../assets/Detail Page Images/Review 2025 Detail page.jpg';
 
 const projects = {
   "amal-app": {
     name: "Amal APP",
     description: "A comprehensive productivity and tools application designed to streamline your daily tasks and boost efficiency. Amal APP combines powerful features with an intuitive interface to help you stay organized and productive throughout your day.",
-    image: amalAppDetailImg,
+    image: '/assets/Detail%20Page%20Images/Amal%20App%20Detail%20page.jpg',
     features: ["Task Management", "Smart Reminders", "Calendar Integration", "Cloud Sync", "Multi-device Support"],
     stack: ["React Native", "Redux", "Firebase", "Node.js"]
   },
   "feel-pro": {
     name: "Feel PRO",
     description: "Your personal health and wellness companion that helps you track your mood, meditation sessions, and mental well-being. Feel PRO provides guided exercises, mindfulness techniques, and personalized insights to improve your emotional health.",
-    image: feelProDetailImg,
+    image: '/assets/Detail%20Page%20Images/FeelPRO%20Detail%20Page.jpg',
     features: ["Mood Tracking", "Guided Meditation", "Wellness Analytics", "Daily Affirmations", "Progress Reports"],
     stack: ["Flutter", "Firebase", "HealthKit", "Core Data"]
   },
   "guess-chat": {
     name: "Guess Chat",
     description: "A fun and interactive social gaming app where friends challenge each other with exciting questions and climb the leaderboard together. Guess & Chat combines social networking with trivia gaming for an engaging experience.",
-    image: guessChatDetailImg,
+    image: '/assets/Detail%20Page%20Images/Gues%20Chat%20Detail%20page.jpg',
     features: ["Real-time Multiplayer", "Leaderboard System", "Community Challenges", "Friend Invites"],
     stack: ["React Native", "Firebase", "Node.js", "Socket.io"]
   },
   "kids-school": {
     name: "Kids School",
     description: "An educational app designed for young learners to master alphabets, numbers, shapes, and more in both English and Urdu. Interactive lessons make learning fun and engaging for kids.",
-    image: kidsSchoolDetailImg,
+    image: '/assets/Detail%20Page%20Images/Kids%20School%20Detail%20page.jpg',
     features: ["English Alphabets", "Urdu Haroof", "Numbers 1-100", "Shapes & Colors", "Interactive Quizzes"],
     stack: ["Flutter", "Firebase", "Dart", "Adobe Illustrator"]
   },
   "kids-drawing": {
     name: "Kids Drawing",
     description: "This app gives kids a fun space to draw and color. It helps them turn imagination into creative artwork with daily challenges, free drawing mode, and a personal gallery to save their masterpieces.",
-    image: kidsDrawingDetailImg,
+    image: '/assets/Detail%20Page%20Images/Kids%20Drawing%20Detail%20pgae.jpg',
     features: ["Free Draw Mode", "Daily Challenges", "Color Palette", "Gallery & Sharing", "Drawing Tools"],
     stack: ["React Native", "Canvas API", "AsyncStorage", "Expo"]
   },
   "review-2025": {
     name: "Review 2025",
     description: "A modern business review platform that helps customers share their experiences and businesses manage their online reputation. Review 2025 makes it easy to collect, display, and respond to customer feedback with powerful analytics and insights.",
-    image: review2025DetailImg,
+    image: '/assets/Detail%20Page%20Images/Review%202025%20Detail%20page.jpg',
     features: ["Customer Reviews", "Rating System", "Business Analytics", "Review Management", "Response Tools"],
     stack: ["React", "Node.js", "MongoDB", "Express", "Tailwind CSS"]
   }

@@ -1,22 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext.jsx';
-import amalLogo from '../assets/Logo Amal Apps.png';
+const amalLogo = '/assets/Logo%20Amal%20Apps.png';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+  const [showHomeNav, setShowHomeNav] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+
+      if (!isHomePage) {
+        setShowHomeNav(false);
+        return;
+      }
+
+      const hideAfter = Math.max(0, window.innerHeight - 120);
+      setShowHomeNav(window.scrollY < hideAfter);
     };
+
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isHomePage]);
 
   return (
     <header 
@@ -31,15 +44,17 @@ const Header = () => {
         </Link>
 
         {/* Center: Floating Nav / CTA Stack */}
-        <div className={`hidden md:flex items-center gap-8 px-8 py-3 rounded-full backdrop-blur-md border border-black/10 dark:border-white/10 transition-all duration-300 ${
-          isScrolled ? 'bg-white/70 dark:bg-black/50 shadow-lg' : 'bg-white/30 dark:bg-transparent'
-        }`}>
-           <nav className="flex items-center gap-6">
-             <a href="#about" className="text-sm font-medium text-black/70 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors">About</a>
-             <a href="#work" className="text-sm font-medium text-black/70 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors">Work</a>
-             <a href="#why-us" className="text-sm font-medium text-black/70 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors">Why Us</a>
-           </nav>
-        </div>
+        {isHomePage && showHomeNav && (
+          <div className={`hidden md:flex items-center gap-8 px-8 py-3 rounded-full backdrop-blur-md border border-black/10 dark:border-white/10 transition-all duration-300 ${
+            isScrolled ? 'bg-white/70 dark:bg-black/50 shadow-lg' : 'bg-white/30 dark:bg-transparent'
+          }`}>
+            <nav className="flex items-center gap-6">
+              <a href="#about" className="text-sm font-medium text-black/70 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors">About</a>
+              <a href="#work" className="text-sm font-medium text-black/70 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors">Work</a>
+              <a href="#why-us" className="text-sm font-medium text-black/70 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors">Why Us</a>
+            </nav>
+          </div>
+        )}
 
         {/* Right: Theme Toggle + Contact */}
         <div className="hidden md:flex items-center gap-3">
@@ -91,9 +106,13 @@ const Header = () => {
           animate={{ opacity: 1, y: 0 }}
           className="absolute top-0 left-0 w-full h-screen bg-white dark:bg-black flex flex-col items-center justify-center gap-8 md:hidden"
         >
-          <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl text-black dark:text-white font-medium">About</a>
-          <a href="#work" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl text-black dark:text-white font-medium">Work</a>
-          <a href="#why-us" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl text-black dark:text-white font-medium">Why Us</a>
+          {isHomePage && (
+            <>
+              <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl text-black dark:text-white font-medium">About</a>
+              <a href="#work" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl text-black dark:text-white font-medium">Work</a>
+              <a href="#why-us" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl text-black dark:text-white font-medium">Why Us</a>
+            </>
+          )}
           <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="px-8 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black font-semibold text-lg">
             Contact Us
           </Link>

@@ -2,54 +2,48 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import amalAppImg from '../assets/images/Amal App.jpg';
-import feelProImg from '../assets/images/FeelPRO.jpg';
-import guessChatImg from '../assets/images/Gues Chat.jpg';
-import kidsSchoolImg from '../assets/images/Kids School.jpg';
-import kidsDrawingImg from '../assets/images/Kids Drawing.jpg';
-import review2025Img from '../assets/images/Review 2025.jpg';
 
 const projects = [
   {
     id: 1,
     name: "Amal APP",
     category: "Productivity & Tools",
-    image: amalAppImg,
+    image: '/assets/images/Amal%20App.jpg',
     slug: "amal-app"
   },
   {
     id: 2,
     name: "Feel PRO",
     category: "Health & Wellness",
-    image: feelProImg,
+    image: '/assets/images/FeelPRO.jpg',
     slug: "feel-pro"
   },
   {
     id: 3,
     name: "Guess Chat",
     category: "Social & Gaming",
-    image: guessChatImg,
+    image: '/assets/images/Gues%20Chat.jpg',
     slug: "guess-chat"
   },
   {
     id: 4,
     name: "Kids School",
     category: "Educational App",
-    image: kidsSchoolImg,
+    image: '/assets/images/Kids%20School%20-%20new.jpg',
     slug: "kids-school"
   },
   {
     id: 5,
     name: "Kids Drawing",
     category: "Creative & Learning",
-    image: kidsDrawingImg,
+    image: '/assets/images/Kids%20Drawing.jpg',
     slug: "kids-drawing"
   },
   {
     id: 6,
     name: "Review 2025",
     category: "Business & Reviews",
-    image: review2025Img,
+    image: '/assets/images/Review%202025.jpg',
     slug: "review-2025"
   }
 ];

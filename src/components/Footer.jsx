@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import amalLogo from '../assets/Logo Amal Apps.png';
+const amalLogo = '/assets/Logo%20Amal%20Apps.png';
 
 const Footer = () => {
   return (
