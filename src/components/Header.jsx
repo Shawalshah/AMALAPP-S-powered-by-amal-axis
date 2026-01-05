@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext.jsx';
 const amalLogo = '/assets/Logo%20Amal%20Apps.png';
@@ -10,6 +10,7 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
+  const navigate = useNavigate();
   const isHomePage = location.pathname === '/';
   const [showHomeNav, setShowHomeNav] = useState(true);
 
@@ -31,6 +32,28 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isHomePage]);
 
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    const headerOffset = isScrolled ? 88 : 112;
+    const y = el.getBoundingClientRect().top + window.scrollY - headerOffset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  };
+
+  const handleSectionNav = (e, id) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+
+    if (!isHomePage) {
+      navigate('/');
+      window.setTimeout(() => scrollToSection(id), 50);
+      return;
+    }
+
+    scrollToSection(id);
+  };
+
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -49,9 +72,10 @@ const Header = () => {
             isScrolled ? 'bg-white/70 dark:bg-black/50 shadow-lg' : 'bg-white/30 dark:bg-transparent'
           }`}>
             <nav className="flex items-center gap-6">
-              <a href="#about" className="text-sm font-medium text-black/70 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors">About</a>
-              <a href="#work" className="text-sm font-medium text-black/70 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors">Work</a>
-              <a href="#why-us" className="text-sm font-medium text-black/70 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors">Why Us</a>
+              <a href="#about" onClick={(e) => handleSectionNav(e, 'about')} className="text-sm font-medium text-black/70 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors">About</a>
+              <a href="#work" onClick={(e) => handleSectionNav(e, 'work')} className="text-sm font-medium text-black/70 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors">Work</a>
+              <a href="#why-us" onClick={(e) => handleSectionNav(e, 'why-us')} className="text-sm font-medium text-black/70 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors">Why Us</a>
+              <a href="#services" onClick={(e) => handleSectionNav(e, 'services')} className="text-sm font-medium text-black/70 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors">Suite</a>
             </nav>
           </div>
         )}
@@ -106,13 +130,15 @@ const Header = () => {
           animate={{ opacity: 1, y: 0 }}
           className="absolute top-0 left-0 w-full h-screen bg-white dark:bg-black flex flex-col items-center justify-center gap-8 md:hidden"
         >
-          {isHomePage && (
-            <>
-              <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl text-black dark:text-white font-medium">About</a>
-              <a href="#work" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl text-black dark:text-white font-medium">Work</a>
-              <a href="#why-us" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl text-black dark:text-white font-medium">Why Us</a>
-            </>
+          {!isHomePage && (
+            <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl text-black dark:text-white font-medium">
+              Home
+            </Link>
           )}
+          <a href="#about" onClick={(e) => handleSectionNav(e, 'about')} className="text-2xl text-black dark:text-white font-medium">About</a>
+          <a href="#work" onClick={(e) => handleSectionNav(e, 'work')} className="text-2xl text-black dark:text-white font-medium">Work</a>
+          <a href="#why-us" onClick={(e) => handleSectionNav(e, 'why-us')} className="text-2xl text-black dark:text-white font-medium">Why Us</a>
+          <a href="#services" onClick={(e) => handleSectionNav(e, 'services')} className="text-2xl text-black dark:text-white font-medium">Suite</a>
           <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="px-8 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black font-semibold text-lg">
             Contact Us
           </Link>
