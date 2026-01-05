@@ -72,12 +72,12 @@ const Portfolio = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {displayedProjects.map((project) => (
             <Link to={`/project/${project.slug}`} key={project.id} className="group cursor-pointer block">
-              <div className="relative overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-900 h-[200px] sm:h-[240px] md:h-[280px] mb-4 sm:mb-6">
+              <div className="relative overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-900 aspect-[16/9] mb-4 sm:mb-6">
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors z-10 duration-500" />
                 <img 
                   src={project.image} 
                   alt={project.name} 
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                  className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                 />
                 
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20">
